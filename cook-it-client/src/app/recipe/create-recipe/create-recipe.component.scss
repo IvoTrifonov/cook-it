@@ -1,0 +1,70 @@
+.create-recipe {
+  margin: 0 auto;
+  width: 40%;
+
+  fieldset {
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px -4px #2F2F2F;
+    -webkit-box-shadow: 0px 0px 8px -2px #2F2F2F; 
+    border: none;
+    background-color: #fff5e3;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+
+    h2,
+    label {
+      text-align: center;
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid gray;
+      padding: 1em 0;
+
+      input,
+      textarea {
+        padding: 5px;
+        width: 50%;
+      }
+
+      .timeInput {
+        margin-right: 1em;
+        width: 15%;
+      }
+
+      label {
+        width: 25%;
+      }
+
+      select {
+        padding: 3px;
+      }
+    }
+
+    .ingredients {
+      border: none;
+    }
+
+    .appended-ingredients {
+      min-height: 1.5em;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+
+    .appendFieldBtn {
+      cursor: pointer;
+      background-color: green;
+      color: #fff;
+      margin-left: -30px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

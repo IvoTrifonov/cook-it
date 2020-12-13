@@ -1,0 +1,101 @@
+<form [formGroup]="form" class="signup" (ngSubmit)="submitFormHandler()">
+  <fieldset>
+    <h2>Sign Up</h2>
+
+    <!-- username -->
+    <p class="field">
+      <label for="username"></label>
+      <input
+        [class.inputError]="form.get('username').touched && !!form.get('username').errors"
+        type="text" 
+        name="username" 
+        id="username" 
+        placeholder="username" 
+        formControlName="username"
+      >
+    </p>
+
+    <p *ngIf="form.get('username').touched && form.get('username').errors?.userExist" class="error">
+      Username is taken!
+    </p>
+
+    <p *ngIf="form.get('username').touched && form.get('username').errors?.required" class="error">
+      Username is required!
+    </p>
+    <p *ngIf="form.get('username').touched && form.get('username').errors?.minlength" class="error">
+      Username must be at least 4 chars!
+    </p>
+    
+    <!-- email -->
+    <p class="field">
+      <label for="email"></label>
+      <input
+      [class.inputError]="form.get('email').touched && !!form.get('email').errors"
+        type="text" 
+        name="email" 
+        id="email" 
+        placeholder="email"
+        formControlName="email"
+      >
+    </p>
+
+    <p *ngIf="form.get('email').touched && form.get('email').errors?.required" class="error">
+      Email is required!
+    </p>
+    <p *ngIf="form.get('email').touched && form.get('email').errors?.email" class="error">
+      Email is not valid!
+    </p>
+
+    <!-- password -->
+    <p class="field">
+      <label for="password"></label>
+      <input
+        [class.inputError]="form.get('password').touched && !!form.get('password').errors"
+        type="password" 
+        name="password" 
+        id="password" 
+        placeholder="password" 
+        formControlName="password"
+      >
+    </p>
+
+    <p *ngIf="form.get('password').touched && form.get('password').errors?.required" class="error">
+      Password is required!
+    </p>
+    <p *ngIf="form.get('password').touched && form.get('password').errors?.minLength" class="error">
+      Password must be at least 4 chars!
+    </p>
+
+    <!-- rePassword -->
+    <p class="field">
+      <label for="rePpassword"></label>
+      <input 
+      [class.inputError]="form.get('rePassword').touched && !!form.get('rePassword').errors"
+        type="password"
+        name="rePassword"
+        id="rePassword"
+        placeholder="repeat password"
+        formControlName="rePassword"
+        >
+    </p>
+
+    <p *ngIf="form.get('rePassword').touched && form.get('rePassword').errors?.required" class="error">
+      Repeat Password is required!
+    </p>
+
+    <p *ngIf="form.get('rePassword').touched && form.get('rePassword').errors?.rePasswordValidator" class="error">
+      Passwords does not match!
+    </p>
+
+    <button [disabled]="form.invalid || isLoading">
+      Sign Up
+    </button>
+    <div class="loader">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
+    <p class="redirect-box">
+      Already have an account?
+      <a routerLink="/user/signin"><span>Sign In!</span></a>
+    </p>
+  </fieldset>
+</form>

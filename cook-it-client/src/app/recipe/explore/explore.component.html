@@ -1,0 +1,41 @@
+<div class="explore-wrapper">
+  <aside class="recipes-filters">
+    <div class="filter-box">
+      <p>Category</p>
+      <select #category>
+        <option value="">All</option>
+        <option value="MAIN_DISH">Main Dish</option>
+        <option value="SOUP">Soup</option>
+        <option value="SALAD">Salad</option>
+        <option value="DRINK">Drink</option>
+        <option value="DESSERT">Dessert</option>
+        <option value="SAUCE">Sauce</option>
+      </select>
+    </div>
+    <div class="filter-box">
+      <p>Dificulty</p>
+      <select #difficulty>
+        <option value="">All</option>
+        <option value="NORMAL">Normal</option>
+        <option value="EASY">Easy</option>
+        <option value="HARD">Hard</option>
+      </select>
+    </div>
+      <div class="filter-box">
+        <p>Cooking time (max.)</p>
+        <input #hours type="number" placeholder="hours"/>
+        <input #minutes type="number" placeholder="minutes"/>
+      </div>
+
+      <div class="filter-box">
+        <p>Ingredients</p>
+        <input #ingredients type="text" placeholder="pork, eggs, tomatoes"/>
+      </div>
+
+      <button class="apply-btn" (click)="handleFilters()">
+        Apply filters
+      </button>
+  </aside>
+
+  <app-recipes-list class="recipes-container"></app-recipes-list>
+</div>

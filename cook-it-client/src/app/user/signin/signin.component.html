@@ -1,0 +1,69 @@
+<form #f="ngForm" class="signin" (ngSubmit)="submitFormHandler(f.value)">
+  <fieldset>
+    <h2>Sign In</h2>
+
+    <p *ngIf="errorMessage" class="error">
+      {{errorMessage}}
+    </p>
+
+    <p class="field">
+      <label for="username"></label>
+      <input
+        #username="ngModel"
+        [(ngModel)]="usernameFromRegister"
+        [class.inputError]="!!username.errors && username.touched"
+        type="text" 
+        name="username" 
+        id="username" 
+        placeholder="username"
+        ngModel 
+        required
+        minlength="4"
+        maxlength="16"
+      >
+    </p>
+
+    <p *ngIf="username.touched && username.errors?.required" class="error">
+      Username is required!
+    </p>
+    <p *ngIf="username.touched && username.errors?.minlength" class="error">
+      Username is too short!
+    </p>
+    <p *ngIf="username.touched && username.errors?.maxlength" class="error">
+      Username is too long!
+    </p>
+
+    <p class="field">
+      <label for="password"></label>
+      <input 
+        #password="ngModel"
+        [class.inputError]="!!password.errors && password.touched"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+        ngModel
+        required
+        minlength="6"
+        >
+    </p>
+
+    <p *ngIf="password.touched && password.errors?.required" class="error">
+      Password is required!
+    </p>
+    <p *ngIf="password.touched && password.errors?.minlength" class="error">
+      Password is too short!
+    </p>
+
+    <button [disabled]="isLoading || f.invalid">
+      Sign In
+    </button>
+    <div class="loader">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
+    <p class="redirect-box">
+      Don't have an account?
+      <a routerLink="/user/signup"><span>Sign Up!</span></a>
+    </p>
+  </fieldset>
+</form>

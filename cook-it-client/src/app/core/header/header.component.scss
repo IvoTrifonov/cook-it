@@ -1,0 +1,101 @@
+.app-header {
+  max-height: 3em;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.4s;
+  z-index: 10000;
+  white-space: nowrap;
+  padding: 15px 0;
+  color: #ffffff;
+  text-shadow: 1px 1px #141414;
+  font-size: 1.1em;
+
+  &.isHome {
+    background-color: transparent;
+
+    .dropdown-ul {
+      background-color: transparent;
+    }
+  }
+
+  .dropdown-ul {
+    background-color: black;
+  }
+
+  .logo {
+    margin-left: 3em;
+    font-size: 1.8em;
+    font-weight: 600;
+  }
+
+  .app-nav {
+    width: 60%;
+    font-weight: bold;
+
+    & ul {
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+
+      .nav-item.dropdown {
+        position: relative;
+
+        .dropdown-ul {
+          position: absolute;
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        &:hover {
+          .dropdown-ul {
+            display: flex;
+          }
+        }
+      }
+
+      .nav-item,
+      .auth-links {
+        margin: 0.7em 1em;
+
+        a {
+          display: block;
+          padding: 0.5em 0.7em;
+          transition: all 0.3s ease;
+
+          &:hover,
+          &.active {
+            color: #D58C00;
+          }
+
+        }
+      }
+
+      .auth-links {
+        border: 1px solid #ffffff;
+        display: flex;
+
+        a {
+          margin: 0 0.5em;
+        }
+
+        .delimiter {
+          width: 3px;
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+
+  &.sticky {
+    background-color: black;
+    padding: 5px 0;
+  }
+}

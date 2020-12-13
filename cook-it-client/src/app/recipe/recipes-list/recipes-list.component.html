@@ -1,0 +1,21 @@
+<main class="recipes-list-wrapper">
+  <div class="loader-wrapper">
+    <app-loader [isLoading]="isLoading"></app-loader>
+  </div>
+
+  <div [className]="isLoading && 'loading'">
+    <ul class="recipes-list">
+      <li class="recipe-box" *ngFor="let recipe of recipes">
+        <a routerLink="/recipes/explore/{{recipe.id}}">
+          <img src="{{recipe.imageURL}}"/>
+          <div class="short-desc">
+            <h3>{{recipe.title}}</h3>
+            <p><span>Cook Time:</span>{{formatPrepTime(recipe.prepTime)}}</p>
+            <p><span>Difficulty:</span>{{recipe.difficulty | lowercase}}</p>
+            <p><span>Category:</span>{{recipe.category | lowercase}}</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</main>

@@ -1,0 +1,94 @@
+<form #f="ngForm" class="create-recipe" (ngSubmit)="submitFormHandler(f.value)">
+  <fieldset>
+    <h2>
+      Create Your Recipe
+    </h2>
+
+    <p class="field">
+      <label for="title">Title</label>
+      <input #title="ngModel" type="text" name="title" id="title" placeholder="Chicken soup" ngModel required
+        minlength="6" maxlength="50" />
+    </p>
+
+    <div class="field ingredients">
+      <label>Ingredients</label>
+      <input #inputIngredient type="text" />
+      <a class="appendFieldBtn" (click)="appendIngredient(inputIngredient)">+</a>
+    </div>
+
+    <div class="field">
+      <ul #ingredients class="appended-ingredients"></ul>
+    </div>
+
+
+    <p class="field">
+      <label for="description">Description</label>
+      <textarea #description="ngModel" name="description" id="description" rows="11" cols="45"
+        placeholder="Put the chicken, carrots, celery and onion in a large soup pot and cover with cold water..."
+        ngModel>
+      </textarea>
+    </p>
+
+    <p class="field">
+      <label for="difficulty">Difficulty</label>
+      <select 
+      #difficulty="ngModel" 
+        name="difficulty" 
+        id="category" 
+        ngModel
+        required 
+      >
+        <option value="" selected disabled hidden>Difficulty</option>
+        <option value="EASY">Normal</option>
+        <option value="NORMAL">Easy</option>
+        <option value="HARD">Hard</option>
+      </select>
+    </p>
+
+    <p class="field">
+      <label for="timeNeeded">Cooking Time</label>
+      <input 
+        class="timeInput"
+        #hours="ngModel" 
+        ngModel 
+        type="number"
+        name="hours"
+        placeholder="hours"
+      />
+      <input 
+        class="timeInput"
+        #minutes="ngModel" 
+        type="number" 
+        name="minutes"
+        placeholder="minutes"
+        ngModel 
+      />
+    </p>
+
+    <div class="field">
+      <label>Category</label>
+      <select #category="ngModel" name="category" id="category" required ngModel>
+        <option value="" selected disabled hidden>Choose here</option>
+        <option value="MAIN_DISH">Main Dish</option>
+        <option value="SOUP">Soup</option>
+        <option value="SALAD">Salad</option>
+        <option value="DRINK">Drink</option>
+        <option value="DESSERT">Dessert</option>
+        <option value="SAUCE">Sauce</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Upload Image</label>
+      <input #imageInput type="file" (change)="imageInputChange(imageInput)" accept="image/*"/>
+    </div>
+
+    <button [disabled]="f.invalid || !imageFile || !ingredientsArr">
+      Create
+    </button>
+
+    <div class="loader">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
+  </fieldset>
+</form>

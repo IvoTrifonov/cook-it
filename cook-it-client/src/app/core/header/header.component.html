@@ -1,0 +1,27 @@
+<header class="app-header" [class.isHome]="isHomeCompenent" [class.sticky]="isSticky">
+  <a class="logo" routerLink="/">COOK IT</a>
+  <nav class="app-nav">
+    <ul>
+      <li class="nav-item dropdown">
+        <a routerLink="/recipes" routerLinkActive='active'>Recipes</a>
+        <ul class="dropdown-ul">
+          <li><a routerLink="/recipes/create">Create</a></li>
+          <li><a routerLink="/recipes/explore">Explore</a></li>
+          <li><a routerLink="/reciipes/find">Find</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a routerLink="/about" routerLinkActive='active'>About</a></li>
+      <li class="nav-item"><a routerLink="/more" routerLinkActive='active'>More</a></li>
+      <li class="nav-item" *ngIf="!user" class="auth-links">
+        <a routerLink="/user/signin" routerLinkActive='active'>Sign In</a>
+        <span class="delimiter"></span>
+        <a routerLink="/user/signup" routerLinkActive='active'>Sign Up</a>
+      </li>
+      <li class="nav-item auth-links" *ngIf="user">
+        <a routerLink="/user/profile">Profile</a>
+        <span class="delimiter"></span>
+        <a routerLink (click)="userService.signOut()">Sign Out</a>
+      </li>
+    </ul>
+  </nav>
+</header>

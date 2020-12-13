@@ -1,0 +1,89 @@
+.cooking-baner {
+  margin-top: -7em;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./../../assets//cooking-banner.jpg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 85vh;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .baner-title {
+    font-size: 4rem;
+    display: flex;
+
+    span {
+      margin: 10px;
+      display: block;
+      opacity: 0;
+    }
+
+    span:last-child {
+      transform: translateY(100%);
+    }
+
+    @keyframes showFirstSpan {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes showSecondSpan {
+      from {
+        opacity: 0;
+        transform: translateY(150%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    span:first-child {
+      animation: 1s ease-in showFirstSpan;
+    }
+
+    span:last-child {
+      animation: 1.2s ease-in-out showSecondSpan;
+      transform: translateY(0);
+    }
+
+    span {
+      opacity: 1;
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 20%;
+    left: 48%;
+    transform: translate(-48%, 20%);
+    height: 4em;
+    width: 4em;
+    border: solid #fff;
+    border-width: 0px 1px 1px 0px;
+    transform: rotate(45deg);
+  }
+}
+
+.descContainer {
+  margin: 1em 0;
+  padding: 1em; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    text-align: center;
+  }
+}
