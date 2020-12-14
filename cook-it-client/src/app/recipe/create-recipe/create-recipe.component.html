@@ -1,4 +1,4 @@
-<form #f="ngForm" class="create-recipe" (ngSubmit)="submitFormHandler(f.value)">
+<form #f="ngForm" class="recipe-form-wrapper" (ngSubmit)="submitFormHandler(f.value)">
   <fieldset>
     <h2>
       Create Your Recipe
@@ -20,7 +20,6 @@
       <ul #ingredients class="appended-ingredients"></ul>
     </div>
 
-
     <p class="field">
       <label for="description">Description</label>
       <textarea #description="ngModel" name="description" id="description" rows="11" cols="45"
@@ -39,8 +38,8 @@
         required 
       >
         <option value="" selected disabled hidden>Difficulty</option>
-        <option value="EASY">Normal</option>
-        <option value="NORMAL">Easy</option>
+        <option value="EASY">Easy</option>
+        <option value="NORMAL">Normal</option>
         <option value="HARD">Hard</option>
       </select>
     </p>

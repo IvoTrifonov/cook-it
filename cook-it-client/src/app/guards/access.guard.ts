@@ -18,15 +18,15 @@ export class AccessGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     return this.checkIfLogged(state.url);
   }
 
   checkIfLogged(url: string): boolean {
-    const isLogged = !!this.userService.accessToken;
+    const isLogged = !!this.userService.user;
     let canPass = true;
 
     if (isLogged) {
+      console.log(isLogged)
       if (url === '/user/signin' || url === '/user/signup') {
         this.router.navigateByUrl('/');
         canPass = false;

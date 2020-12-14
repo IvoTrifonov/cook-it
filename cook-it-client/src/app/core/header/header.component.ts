@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import jwt_decode from 'jwt-decode';
 import { UserService } from 'src/app/user/user.service';
+
 
 @Component({
   selector: 'app-header',
@@ -11,15 +11,14 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @ViewChild('dropdownRecipes') dropdown: ElementRef;
+  get user() { return this.userService.user }
+  
   isSticky: boolean;
   isHomeCompenent: boolean;
 
   private stickyHeaderSubscription: Subscription;
   private isHomeComponentSubscription: Subscription;
-
-  get user() {
-    return this.userService.accessToken;
-  } 
 
   constructor(
     private router: Router,
@@ -36,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ).subscribe((value: NavigationEnd) => {
       value.url === '/' ? this.isHomeCompenent = true : this.isHomeCompenent = false;
     });
+
   }
 
   ngOnDestroy(): void {

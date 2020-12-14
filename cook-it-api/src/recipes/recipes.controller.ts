@@ -43,6 +43,8 @@ export class RecipesController {
     @Body() createRecipeDto: CreateRecipeDto,
     @GetUser() user: User
   ): Promise<Recipe> {
+    console.log(recipeId);
+    console.log(createRecipeDto);
     return this.recipesService.updateRecipe(recipeId, createRecipeDto, user.id);
   }
 

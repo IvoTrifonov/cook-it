@@ -2,6 +2,7 @@ import { Body, Controller, Get, Header, Param, Post, Query, ValidationPipe } fro
 import { AuthService } from './auth.service';
 import { SignInCredentialsDto } from './dto/signIn.credentials.dto';
 import { SignUpCredentialsDto } from './dto/signUp.credentials.dto';
+import { User } from './user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -27,5 +28,12 @@ export class AuthController {
     @Body(ValidationPipe) signInCredentialsDto: SignInCredentialsDto
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(signInCredentialsDto);
+  }
+
+  @Get('/user/:id')
+  getUserById(
+    @Param('id') id: number
+  ) : Promise<User> {
+    return this.authService.getUserById(id);
   }
 }

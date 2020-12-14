@@ -1,9 +1,10 @@
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SignInCredentialsDto } from './dto/signIn.credentials.dto';
 import { SignUpCredentialsDto } from './dto/signUp.credentials.dto';
 import { JwtPayload } from './jwt.payload.interface';
+import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -39,5 +40,15 @@ export class AuthService {
   async checkUsernameExists(username: string): Promise<boolean> {
     const user = await this.userRepository.findOne({ username });
     return user ? true : false;
+  }
+
+  async getUserById(id: number) : Promise<User> {
+    const user = await this.userRepository.findOne(id);
+    
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
   }
 }

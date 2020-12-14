@@ -1,0 +1,53 @@
+<div *ngIf="recipe">
+  <form #f=ngForm class="recipe-form-wrapper" (ngSubmit)="submitFormHandler(f.value)">
+    <fieldset>
+      <p class="field">
+        <label for="title">Title</label>
+        <input #title="ngModel" type="text" name="title" id="title" [(ngModel)]="recipe.title" required
+          minlength="6" maxlength="50" />
+      </p>
+
+      <p class="field">
+        <label for="description">Description</label>
+        <textarea #description="ngModel" name="description" id="description" rows="11" cols="45" required
+          [(ngModel)]="recipe.description">
+        </textarea>
+      </p>
+  
+      <p class="field">
+        <label for="difficulty">Difficulty</label>
+        <select #difficulty="ngModel" name="difficulty" [(ngModel)]="recipe.difficulty" id="category">
+          <option value="" disabled disabled>Difficulty</option>
+          <option value="EASY">Easy</option>
+          <option value="NORMAL">Normal</option>
+          <option value="HARD">Hard</option>
+        </select>
+      </p>
+
+      <p class="field">
+        <label for="timeNeeded">Cooking Time</label>
+        <input class="timeInput" #hours="ngModel" type="number" name="hours" placeholder="hours" [(ngModel)]="recipe.hours"/>
+        <input class="timeInput" #minutes="ngModel" type="number" name="minutes" placeholder="minutes" [(ngModel)]="recipe.minutes"/>
+      </p>
+
+      <div class="field">
+        <label>Category</label>
+        <select #category="ngModel" [(ngModel)]="recipe.category" name="category" id="category" required>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option value="MAIN_DISH">Main Dish</option>
+          <option value="SOUP">Soup</option>
+          <option value="SALAD">Salad</option>
+          <option value="DRINK">Drink</option>
+          <option value="DESSERT">Dessert</option>
+          <option value="SAUCE">Sauce</option>
+        </select>
+      </div>
+
+      <button [disabled]="f.invalid">
+        Edit
+      </button>
+
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </fieldset>
+  </form>
+</div>

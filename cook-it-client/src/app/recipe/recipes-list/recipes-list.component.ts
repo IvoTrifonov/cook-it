@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
 import { Recipe } from '../create-recipe/recipeModel';
 import { RecipeService } from '../recipe.service';
+import { formatPrepTime } from '../helpers/formatPrepTime';
 
 @Component({
   selector: 'app-recipes-list',
@@ -32,7 +32,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.recipes = recipes;
           this.isLoading = false
-        }, 1000);
+        }, 500);
       });
     });
   }
@@ -41,20 +41,5 @@ export class RecipesListComponent implements OnInit, OnDestroy {
     this.querySubscribtion.unsubscribe();
   }
 
-  formatPrepTime(minutes: number) {
-    let formatTime;
-
-    if (minutes < 60) {
-      formatTime = `${minutes}m.`
-    } else if (minutes === 60) {
-      formatTime = '1h.';
-    } else {
-      const hours = Math.floor(minutes / 60);          
-      minutes = minutes % 60;
-
-      formatTime = `${hours}h. and ${minutes}m.`
-    }
-
-    return formatTime;
-  }
+  formatPrepTime = formatPrepTime;
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import jwtDecode from 'jwt-decode';
 import { UserService } from '../user.service';
 
 @Component({
@@ -7,21 +6,12 @@ import { UserService } from '../user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   username: string;
-
-  get user() {
-    return this.userService.accessToken;
-  }
+  get user() { return this.userService.user }
 
   constructor(
     private userService: UserService
   ) { }
-
-  ngOnInit(): void {
-    if (this.user) {
-      this.username = jwtDecode(this.user);
-    }
-  }
 
 }

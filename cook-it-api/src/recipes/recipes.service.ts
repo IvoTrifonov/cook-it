@@ -30,7 +30,7 @@ export class RecipesService {
   }
 
   async updateRecipe(id: number, createRecipeDto: CreateRecipeDto, userId: number): Promise<Recipe> {
-    const { title, category, description } = createRecipeDto;
+    const { title, category, description, difficulty, prepTime } = createRecipeDto;
     const recipe = await this.getRecipeById(id);
 
     if (recipe.userId !== userId) {
@@ -40,6 +40,9 @@ export class RecipesService {
     recipe.title = title;
     recipe.category = category;
     recipe.description = description;
+    recipe.difficulty = difficulty;
+    recipe.prepTime = prepTime;
+    
     await recipe.save();
     return recipe;
   }

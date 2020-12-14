@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import jwt_decode from "jwt-decode";
 import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { getLocalUser } from 'src/app/core/helpers/getLocalUser';
 
 @Component({
   selector: 'app-signin',
@@ -29,8 +28,8 @@ export class SigninComponent {
     this.userService.signIn(data).subscribe(res => {
       this.isLoading = false;
       const { accessToken } = res;
-      this.userService.accessToken = accessToken;
       localStorage.setItem('user', accessToken);
+      this.userService.user = getLocalUser();
       this.router.navigate(['/']);
       this.toastrService.success('Successfully logged in!');
     }, 

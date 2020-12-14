@@ -53,7 +53,6 @@ export class RecipeRepository extends Repository<Recipe> {
 
     try {
       const recipes = await queryBuilder.getMany();
-      console.log(recipes);
       return recipes;
     } catch (error) {
       this.logger.error(`Failed to get recipes with filters: ${query}`);

@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { getLocalUser } from '../core/helpers/getLocalUser';
+import { IUser } from './interfaces/IUser';
 const authUrl = environment.baseUrl + '/auth';
 
 @Injectable()
 export class UserService {
-  accessToken = localStorage.getItem('user');
+  user: IUser = getLocalUser();
 
   constructor(
     private http: HttpClient,
@@ -24,7 +26,7 @@ export class UserService {
   }
 
   signOut() {
-    this.accessToken = null;
+    this.user = null;
     localStorage.removeItem('user');
     this.toasterService.success('Logged out!');
   }
@@ -33,5 +35,9 @@ export class UserService {
     return this.http.get(authUrl + '/signup', {
       params: new HttpParams().append('username', username)
     });
+  }
+
+  getUserById(id: number) {
+    return this.http.get(authUrl + `/user/${id}`);
   }
 }

@@ -6,7 +6,7 @@
   <div [className]="isLoading && 'loading'">
     <ul class="recipes-list">
       <li class="recipe-box" *ngFor="let recipe of recipes">
-        <a routerLink="/recipes/explore/{{recipe.id}}">
+        <a routerLink="/recipes/{{recipe.id}}">
           <img src="{{recipe.imageURL}}"/>
           <div class="short-desc">
             <h3>{{recipe.title}}</h3>

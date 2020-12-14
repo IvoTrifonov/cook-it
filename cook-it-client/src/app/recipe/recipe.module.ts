@@ -9,6 +9,8 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 import { ExploreComponent } from './explore/explore.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
     CreateRecipeComponent,
     ExploreComponent,
     RecipesListComponent,
+    RecipeComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
