@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, Req, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { User } from '../auth/user.entity';
@@ -26,6 +26,13 @@ export class RecipesController {
     @Query() query
   ) : Promise<Recipe[]> {
     return this.recipesService.getRecipes(query);
+  }
+
+  @Get('/search')
+  getRecipesByKeywords(
+    @Query('keywords') keywords: string[]
+  ) : Promise<Recipe[]> {
+    return this.recipesService.getRecipesByKeywords(keywords);
   }
 
   @Get('/:id')
@@ -56,5 +63,4 @@ export class RecipesController {
   ): Promise<void> {
     return this.recipesService.deleteRecipe(id, user.id);
   }
-
 }

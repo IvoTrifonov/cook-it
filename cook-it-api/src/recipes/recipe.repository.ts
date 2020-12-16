@@ -60,4 +60,22 @@ export class RecipeRepository extends Repository<Recipe> {
     }
 
   }
+
+  async getRecipesByKeywords(keywords: string[]) : Promise<Recipe[]> {
+
+    const qb = this.createQueryBuilder('recipe');
+
+    if(keywords.length > 0) {
+      qb.orWhere(`to_tsvector('simple',recipe.title) @@ to_tsquery('simple', :query)`, { query: keywords });
+      qb.orWhere(`to_tsvector('simple', recipe.description) @@ to_tsquery('simple', :query)`, { query: keywords });
+    }
+
+    try {
+      const recipes = await qb.getMany();
+      return recipes;
+    } catch (error) {
+      this.logger.error(`Failed to get recipes with keywords: ${keywords}`);
+      throw new InternalServerErrorException();
+    }
+  }
 }

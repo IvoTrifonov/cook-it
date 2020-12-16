@@ -5,6 +5,7 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { EditComponent } from './edit/edit.component';
 import { ExploreComponent } from './explore/explore.component';
+import { FindComponent } from './find/find.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipesComponent } from './recipes/recipes.component';
 
@@ -21,6 +22,10 @@ const routes: Routes = [
         path: 'create',
         canActivate: [AccessGuard],
         component: CreateRecipeComponent
+      },
+      {
+        path: 'find',
+        component: FindComponent
       },
       {
         path: 'explore',

@@ -1,0 +1,12 @@
+<div class="find-recipes-wrapper">
+  <h1>Find Recipes</h1>
+  <div class="search-box">
+    <input (keyup)="keyUp.next($event)" class="search-input" type="text" placeholder="type something">
+  </div>
+  <div #results class="results">
+    <ul #resultsUl></ul>
+    <div class="loader">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
+  </div>
+</div>

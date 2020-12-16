@@ -2,14 +2,14 @@
   <div class="recipe-data">
     <h2>{{recipe.title | uppercase}}</h2>
     <p><span>Created at:</span></p>
-    <p><span>Category</span> {{recipe.category}}</p>
-    <p><span>Difficulty</span>: {{recipe.difficulty}}</p>
-    <p><span>Cooking Time</span>: {{formatPrepTime(recipe.prepTime)}}</p>
+    <p><span>Category:</span> {{recipe.category === 'MAIN_DISH' ? recipe.category.split('_').join(' ').toString() : recipe.category}}</p>
+    <p><span>Difficulty:</span> {{recipe.difficulty}}</p>
+    <p><span>Cooking Time:</span>: {{formatPrepTime(recipe.prepTime)}}</p>
     <ol>
-      <span>Ingredients</span>:
+      <span>Ingredients:</span>
       <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
     </ol>
-    <p><span>Made by</span>: {{createdBy.username}} {{createdBy.username === loggedUser?.username ? '(you)' : null}}</p>
+    <p><span>Made by:</span> {{createdBy.username}} {{createdBy.username === loggedUser?.username ? '(you)' : null}}</p>
   </div>
   <div class="recipe-image">
     <img src="{{recipe.imageURL}}"/>

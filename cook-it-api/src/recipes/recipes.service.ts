@@ -58,4 +58,8 @@ export class RecipesService {
   getRecipes(query) : Promise<Recipe[]> {
     return this.recipeRepository.getRecipes(query);
   }
+
+  getRecipesByKeywords(keywords : string[]): Promise<Recipe[]> {
+    return this.recipeRepository.getRecipesByKeywords(keywords);
+  }
 }

@@ -11,6 +11,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { EditComponent } from './edit/edit.component';
+import { FindComponent } from './find/find.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditComponent } from './edit/edit.component';
     RecipesListComponent,
     RecipeComponent,
     EditComponent,
+    FindComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,9 @@ import { EditComponent } from './edit/edit.component';
     SharedModule,
     RecipeRoutingModule,
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'dd2an9hq9'}),
+  ],
+  exports: [
+    RecipesListComponent
   ]
 })
 export class RecipeModule { }

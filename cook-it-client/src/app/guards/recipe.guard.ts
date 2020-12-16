@@ -3,6 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStat
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+import { Recipe } from '../recipe/create-recipe/recipeModel';
 import { IRecipe } from '../recipe/interfaces/IRecipe';
 import { RecipeService } from '../recipe/recipe.service';
 import { UserService } from '../user/user.service';
@@ -23,7 +24,7 @@ export class RecipeGuard implements CanActivate {
     const urlArray = state.url.split('/');
     const recipeID = +urlArray[urlArray.length - 1];
 
-    return this.checkIfLogged() && this.chekIfUserIsCreator(recipeID);
+    return this.checkIfLogged() && this.chekIfUserIsCreator();
   }
 
   checkIfLogged(): boolean {
@@ -38,16 +39,17 @@ export class RecipeGuard implements CanActivate {
     return true;
   }
   
-  chekIfUserIsCreator(recipeId: number) : boolean {
+  chekIfUserIsCreator() : boolean {
     const user = this.userService.user;
-    let isCreator = false;
+    const recipeOwnerId = this.recipeService.recipeOwnerId;
+    let isCreator = false;  
     
-    if (user.id === recipeId) {
+    if (user.id === recipeOwnerId) {
       isCreator = true;
     } else {
       isCreator = false;
       this.toaster.error(`Can modify only your recipes!`);
-      this.router.navigate([`/recipes/${recipeId}`]);
+      this.router.navigate([`/recipes/${recipeOwnerId}`]);
     }
 
     return isCreator;

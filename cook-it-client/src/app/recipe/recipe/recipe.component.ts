@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { formatPrepTime } from '../helpers/formatPrepTime';
@@ -19,7 +19,7 @@ export class RecipeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private recipeServcie: RecipeService,
+    private recipeService: RecipeService,
     private userService: UserService,
     private router: Router,
     private toaster: ToastrService
@@ -30,8 +30,9 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     const recipeId = +this.route.snapshot.paramMap.get('id');
 
-    this.recipeServcie.getRecipeById(recipeId).subscribe((recipe: IRecipe) => {
+    this.recipeService.getRecipeById(recipeId).subscribe((recipe: IRecipe) => {
       this.recipe = recipe;
+      this.recipeService.recipeOwnerId = recipe.userId;
 
       this.userService.getUserById(this.recipe.userId).subscribe((user: IUser) => {
         this.createdBy = user;
@@ -42,8 +43,7 @@ export class RecipeComponent implements OnInit {
   }
 
   deleteRecipe(id: number) {
-    console.log(id);
-    this.recipeServcie.deleteRecipeById(id).subscribe(() => {
+    this.recipeService.deleteRecipeById(id).subscribe(() => {
       this.toaster.success('Successfuly deleted recipe!');
       this.router.navigate([`/recipes/explore`]);
     });

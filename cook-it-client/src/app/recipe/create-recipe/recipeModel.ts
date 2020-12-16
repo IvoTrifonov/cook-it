@@ -23,6 +23,7 @@ export class Recipe {
     public difficulty: Difficulty,
     public prepTime: number,
     public hours?: number,
-    public minutes?: number
+    public minutes?: number,
+    public id?: number,
   ) { }
 }

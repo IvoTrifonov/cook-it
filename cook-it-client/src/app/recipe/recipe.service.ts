@@ -14,6 +14,7 @@ const headers = {
   providedIn: 'root'
 })
 export class RecipeService {
+  recipeOwnerId: number;
 
   constructor(
     private http: HttpClient
@@ -39,5 +40,12 @@ export class RecipeService {
 
   deleteRecipeById(id: number) {
     return this.http.delete(`${baseUrl}/recipes/${id}`, { headers })
+  }
+
+  getRecipesByKeywords(keywords: string[]) : Observable<any> {
+    const params = { keywords: keywords };
+
+    console.log(params);
+    return this.http.get(`${baseUrl}/recipes/search`, { params: params });
   }
 }
