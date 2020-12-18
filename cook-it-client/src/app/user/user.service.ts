@@ -29,6 +29,8 @@ export class UserService {
     this.user = null;
     localStorage.removeItem('user');
     this.toasterService.success('Logged out!');
+    console.log(this.user);
+    console.log(localStorage.getItem('user'));
   }
 
   checkUsernameExists(username: string): Observable<any> {

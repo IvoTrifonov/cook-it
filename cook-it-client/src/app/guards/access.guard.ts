@@ -26,7 +26,6 @@ export class AccessGuard implements CanActivate {
     let canPass = true;
 
     if (isLogged) {
-      console.log(isLogged)
       if (url === '/user/signin' || url === '/user/signup') {
         this.router.navigateByUrl('/');
         canPass = false;

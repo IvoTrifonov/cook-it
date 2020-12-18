@@ -1,10 +1,9 @@
-<div *ngIf="recipe && createdBy" class="recipe-wrapper">
+<div [@recipeAnimation] *ngIf="recipe && createdBy" class="recipe-wrapper">
   <div class="recipe-data">
     <h2>{{recipe.title | uppercase}}</h2>
-    <p><span>Created at:</span></p>
-    <p><span>Category:</span> {{recipe.category === 'MAIN_DISH' ? recipe.category.split('_').join(' ').toString() : recipe.category}}</p>
-    <p><span>Difficulty:</span> {{recipe.difficulty}}</p>
-    <p><span>Cooking Time:</span>: {{formatPrepTime(recipe.prepTime)}}</p>
+    <p><span>Category:</span> {{recipe.category | formatCategory}}</p>
+    <p><span>Difficulty:</span> {{recipe.difficulty | lowercase}}</p>
+    <p><span>Cooking Time:</span> {{recipe.prepTime | formatPrepTimePipe}}</p>
     <ol>
       <span>Ingredients:</span>
       <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>

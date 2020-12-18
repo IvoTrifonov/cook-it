@@ -86,4 +86,42 @@
   h1 {
     text-align: center;
   }
+
+  div {
+    display: flex;
+    margin: 3em 0;
+    justify-content: center;
+
+    p {
+      padding: 1em;
+      font-size: 1.2em;
+      width: 50%;
+      margin: 0 2em;
+      display: flex;
+      flex-direction: column;
+
+      img {
+        margin: 2em 0;
+        width: 100%;
+      }
+    }
+
+    img {
+      width: 33%;
+    }
+  }
+}
+
+.cooking-benefits {
+  width: 55%;
+  margin: 0 auto;
+  font-size: 1.15em;
+
+  h2 {
+    margin: 2em 0;
+  }
+
+  div p {
+    margin: 1.2em 0;
+  }
 }

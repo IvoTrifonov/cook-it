@@ -1,16 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
-import { formatPrepTime } from '../helpers/formatPrepTime';
 import { UserService } from 'src/app/user/user.service';
 import { IRecipe } from '../interfaces/IRecipe';
 import { IUser } from 'src/app/user/interfaces/IUser';
 import { ToastrService } from 'ngx-toastr';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.scss']
+  styleUrls: ['./recipe.component.scss'],
+  animations: [
+    trigger('recipeAnimation', [
+      transition(':enter', [
+        style({
+          transform: 'scaleY(0)'
+        }),
+        animate('200ms')
+      ])
+    ])
+  ]
 })
 export class RecipeComponent implements OnInit {
   recipe: IRecipe;
@@ -48,6 +58,4 @@ export class RecipeComponent implements OnInit {
       this.router.navigate([`/recipes/explore`]);
     });
   }
-
-  formatPrepTime = formatPrepTime;
 }

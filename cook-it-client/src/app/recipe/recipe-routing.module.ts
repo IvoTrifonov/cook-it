@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AccessGuard } from '../guards/access.guard';
 import { RecipeGuard } from '../guards/recipe.guard';
-import { NotFoundComponent } from '../not-found/not-found.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { EditComponent } from './edit/edit.component';
 import { ExploreComponent } from './explore/explore.component';

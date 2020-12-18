@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, Req, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { get } from 'http';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { User } from '../auth/user.entity';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
@@ -19,6 +20,13 @@ export class RecipesController {
     @GetUser() user: User
   ): Promise<Recipe> {
     return this.recipesService.createRecipe(createRecipeDto, user);
+  }
+
+  @Get('/user')
+  getUserRecipes(
+    @Query('userId') userId: string
+  ): Promise<Recipe[]> {
+    return this.recipesService.getUserRecipes(userId);
   }
 
   @Get('/explore')

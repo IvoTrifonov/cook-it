@@ -2,4 +2,16 @@
   background: black;
   height: 8em;
   color: #fff;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  nav ul{
+    display: flex;
+
+   li {
+     margin: 0 1.2em;
+   }
+  }
 }

@@ -12,6 +12,8 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { EditComponent } from './edit/edit.component';
 import { FindComponent } from './find/find.component';
+import { FormatCategoryPipe } from './formatCategoryPipe';
+import { FormatPrepTimePipe } from './formatPrepTimePipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FindComponent } from './find/find.component';
     RecipeComponent,
     EditComponent,
     FindComponent,
+    FormatCategoryPipe,
+    FormatPrepTimePipe
   ],
   imports: [
     CommonModule,

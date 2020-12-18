@@ -62,4 +62,9 @@ export class RecipesService {
   getRecipesByKeywords(keywords : string[]): Promise<Recipe[]> {
     return this.recipeRepository.getRecipesByKeywords(keywords);
   }
+
+  async getUserRecipes(userId: string): Promise<Recipe[]> {
+    const recipes = this.recipeRepository.find({ userId: +userId });
+    return recipes;
+  }
 }
