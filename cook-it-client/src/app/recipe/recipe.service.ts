@@ -11,10 +11,6 @@ const { baseUrl } = environment;
 })
 export class RecipeService {
   recipeOwnerId: number;
-  headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('user')}`
-  }
 
   constructor(
     private http: HttpClient,
@@ -24,8 +20,12 @@ export class RecipeService {
   }
 
   create(recipe: Recipe): Observable<any> {
-    console.log(this.headers);
-    return this.http.post(`${baseUrl}/recipes`, recipe, { headers: this.headers });
+    return this.http.post(`${baseUrl}/recipes`, recipe, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('user')}`
+      }
+    });
   }
 
   getRecipes(query): Observable<any> {
@@ -37,11 +37,23 @@ export class RecipeService {
   }
 
   editRecipeById(id: number, recipe: Recipe): Observable<any> {
-    return this.http.patch(`${baseUrl}/recipes/${id}`, recipe, { headers: this.headers })
+    return this.http.patch(`${baseUrl}/recipes/${id}`, recipe,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('user')}`
+        }
+      })
   }
 
   deleteRecipeById(id: number) {
-    return this.http.delete(`${baseUrl}/recipes/${id}`, { headers: this.headers })
+    return this.http.delete(`${baseUrl}/recipes/${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('user')}`
+        }
+      })
   }
 
   getRecipesByKeywords(keywords: string[]): Observable<any> {
@@ -50,7 +62,7 @@ export class RecipeService {
     return this.http.get(`${baseUrl}/recipes/search`, { params });
   }
 
-  getUserRecipes(userId: string) : Observable<any> {
+  getUserRecipes(userId: string): Observable<any> {
     const params = { userId }
 
     return this.http.get(`${baseUrl}/recipes/user`, { params });

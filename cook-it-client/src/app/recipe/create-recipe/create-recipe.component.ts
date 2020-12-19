@@ -40,8 +40,8 @@ export class CreateRecipeComponent {
 
       this.recipeService.create(recipe).subscribe(res => {
         this.toaster.success('Created new recipe!');
-        this.router.navigate(['/recipes/']);
-      }, err => this.router.navigate(['/']));
+        this.router.navigate(['/recipes/explore']);
+      }, err => this.router.navigate(['/recipes/explore']));
     });
   }
 
